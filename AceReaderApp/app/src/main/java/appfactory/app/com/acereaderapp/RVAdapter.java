@@ -3,6 +3,7 @@ package appfactory.app.com.acereaderapp;
 /**
  * Created by prasadshirsath on 10/3/15.
  */
+
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,12 +16,20 @@ import java.util.List;
 
 public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> {
 
-    public static class PersonViewHolder extends RecyclerView.ViewHolder {
+    static OnItemClickListener mItemClickListener;
+
+    public interface OnItemClickListener {
+        void onItemClick(View view, int position);
+    }
+    public void setOnItemClickListener(final OnItemClickListener mItemClickListener) {
+        this.mItemClickListener = mItemClickListener;
+    }
+    public static class PersonViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         CardView cv;
         TextView personName;
         TextView personAge;
-        ImageView personPhoto;
+        ImageView personPhoto,statusPhoto;
 
         PersonViewHolder(View itemView) {
             super(itemView);
@@ -28,7 +37,18 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> 
             personName = (TextView)itemView.findViewById(R.id.person_name);
             personAge = (TextView)itemView.findViewById(R.id.person_age);
             personPhoto = (ImageView)itemView.findViewById(R.id.person_photo);
+            statusPhoto = (ImageView)itemView.findViewById(R.id.status_image);
+            itemView.setOnClickListener(this);
+
         }
+
+        @Override
+        public void onClick(View v) {
+            if (mItemClickListener != null) {
+                mItemClickListener.onItemClick(v, getPosition());
+            }
+        }
+
     }
 
     List<Person> persons;
@@ -54,6 +74,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.PersonViewHolder> 
         personViewHolder.personName.setText(persons.get(i).name);
         personViewHolder.personAge.setText(persons.get(i).age);
         personViewHolder.personPhoto.setImageResource(persons.get(i).photoId);
+        personViewHolder.statusPhoto.setImageResource(persons.get(i).statusphotoID);
     }
 
     @Override

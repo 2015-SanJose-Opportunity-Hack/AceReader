@@ -7,10 +7,13 @@ class Person {
     String name;
     String age;
     int photoId;
-
-    Person(String name, String age, int photoId) {
+    int statusphotoID;
+    Person(String name, String age, int photoId,int statusId) {
         this.name = name;
         this.age = age;
         this.photoId = photoId;
+        this.statusphotoID = statusId;
+
+
     }
 }
