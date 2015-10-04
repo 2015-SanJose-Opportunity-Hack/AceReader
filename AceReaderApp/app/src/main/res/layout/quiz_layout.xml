@@ -40,6 +40,50 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="137dp" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text=" many"
+            android:id="@+id/textView2"
+            android:layout_below="@+id/textView"
+            android:layout_alignStart="@+id/textView"
+            android:layout_marginTop="88dp" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:id="@+id/radioButton"
+            android:layout_alignTop="@+id/textView2"
+            android:layout_toStartOf="@+id/textView2" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:id="@+id/radioButton2"
+            android:layout_below="@+id/radioButton"
+            android:layout_alignStart="@+id/radioButton" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="named"
+            android:id="@+id/textView3"
+            android:layout_below="@+id/radioButton"
+            android:layout_toEndOf="@+id/radioButton" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="1/5  "
+            android:id="@+id/textView4"
+            android:layout_alignTop="@+id/textView_reader"
+            android:layout_alignEnd="@+id/textView_reader" />
+
     </RelativeLayout>
 
 

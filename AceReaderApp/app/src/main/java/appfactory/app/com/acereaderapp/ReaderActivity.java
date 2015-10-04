@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.util.HashMap;
+
 import appfactory.app.com.acereaderapp.ttpengine.Speaker;
 
 /**
@@ -32,6 +34,7 @@ public class ReaderActivity extends Activity implements Speaker.MyUtteranceProgr
     private Speaker speaker;
 
     private String text="Hey are you having fun. We are here for hacking.";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +80,17 @@ public class ReaderActivity extends Activity implements Speaker.MyUtteranceProgr
             }
         });
         checkTTS();
+
+        //calculate
+        int noOfQuiz = 3;
+        HashMap<Integer,Integer> temp = new HashMap<>();
+        temp.put(1, 5);
+        temp.put(2, 3);
+        temp.put(3, 4);
+        QuizData quizData = new QuizData(noOfQuiz,temp);
+        Integer test = SingletonData.updateLevel(quizData);
+        Log.d("New Level",test+"");
+
     }
     private void checkTTS(){
         Intent check = new Intent();
