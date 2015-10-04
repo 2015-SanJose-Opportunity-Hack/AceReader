@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="fill_parent"
+    android:orientation="vertical"
+    >
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="5dp"
+        android:layout_gravity="center"
+        android:background="@color/background_floating_material_dark">
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button_play"
+        android:src="@drawable/play"
+        />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/replay"
+            android:id="@+id/button_replay"
+            />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/gear"
+            android:id="@+id/button_settings"
+            />
+
+    </LinearLayout>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_margin="5dp"
+        android:padding="10dp"
+        android:layout_gravity="center"
+        >
+       <TextView
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:id="@+id/textView_reader"
+           android:text="Hey! I'm new to this school."
+           android:background="@color/background_floating_material_dark"
+           android:textColor="@color/whiteText"
+           android:textSize="20sp"
+           />
+        <Button
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="@string/Im_ready"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:layout_alignBottom="@+id/textView_reader"
+            android:layout_alignStart="@+id/textView_reader"
+            android:layout_alignParentEnd="true" />
+    </RelativeLayout>
+
+
+
+
+
+</LinearLayout>
