@@ -54,7 +54,7 @@ public class Speaker extends UtteranceProgressListener implements OnInitListener
         }
     }
 
-    public void speak(String text,int line){
+    public void speak(String text){
         // Speak only if the TTS is ready
         // and the user has allowed speech
         if(ready && allowed) {
@@ -68,7 +68,7 @@ public class Speaker extends UtteranceProgressListener implements OnInitListener
                     String.valueOf(AudioManager.STREAM_ALARM));
            // tts.speak(text, TextToSpeech.QUEUE_FLUSH, myHashAlarm);
             myHashAlarm.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID,
-                    ""+line);
+                    ""+text);
 // myHashAlarm now contains two optional parameters
             tts.speak(text, TextToSpeech.QUEUE_ADD, myHashAlarm);
 
@@ -92,13 +92,13 @@ public class Speaker extends UtteranceProgressListener implements OnInitListener
 
 
     @Override
-    public void onStart(String s) {
+    public void onStart(final String s) {
         Log.d("TTS", "start");
 
         Handler handler = new Handler(Looper.getMainLooper());
         handler.post(new Runnable() {
             public void run() {
-                utteranceProgressListener.onTTSStart();
+                utteranceProgressListener.onTTSStart(s);
             }
         });
 
@@ -106,12 +106,12 @@ public class Speaker extends UtteranceProgressListener implements OnInitListener
     }
 
     @Override
-    public void onDone(String s) {
+    public void onDone(final String s) {
         Log.d("TTS", "done"+s);
         Handler handler = new Handler(Looper.getMainLooper());
         handler.post(new Runnable() {
             public void run() {
-                utteranceProgressListener.onTTSDone();
+                utteranceProgressListener.onTTSDone(s);
             }
         });
 
@@ -124,8 +124,8 @@ public class Speaker extends UtteranceProgressListener implements OnInitListener
 
 
     public interface MyUtteranceProgressListener{
-        public void onTTSDone();
-        public void onTTSStart();
+        public void onTTSDone(String s);
+        public void onTTSStart(String s);
 
     }
 

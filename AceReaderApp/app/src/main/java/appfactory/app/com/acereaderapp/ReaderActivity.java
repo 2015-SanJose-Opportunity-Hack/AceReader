@@ -5,12 +5,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import appfactory.app.com.acereaderapp.ttpengine.Speaker;
 
@@ -45,11 +49,10 @@ public class ReaderActivity extends Activity implements Speaker.MyUtteranceProgr
             @Override
             public void onClick(View view) {
                 speaker.allow(true);
-                String[] s = text.split("\\.");
-                for( int i=0;i<s.length;i++)
-                {
-                    speaker.speak(s[i],i);
-
+                Pattern re = Pattern.compile("[^.!?\\s][^.!?]*(?:[.!?](?!['\"]?\\s|$)[^.!?]*)*[.!?]?['\"]?(?=\\s|$)", Pattern.MULTILINE | Pattern.COMMENTS);
+                Matcher reMatcher = re.matcher(text);
+                while (reMatcher.find()) {
+                    speaker.speak(reMatcher.group());
                 }
             }
         });
@@ -66,6 +69,7 @@ public class ReaderActivity extends Activity implements Speaker.MyUtteranceProgr
         });
 
         checkTTS();
+
     }
     private void checkTTS(){
         Intent check = new Intent();
@@ -119,15 +123,67 @@ public class ReaderActivity extends Activity implements Speaker.MyUtteranceProgr
 
 
     @Override
-    public void onTTSDone() {
+    public void onTTSDone(String s) {
         btnPlay.setImageResource(R.drawable.play);
         Log.d("TTS", "Stop");
+        text=text.replaceAll("<font color=#cc0029>","");
+        text=text.replaceAll("</font>","");
+
 
     }
 
     @Override
-    public void onTTSStart() {
+    public void onTTSStart(String s) {
         btnPlay.setImageResource(R.drawable.pause);
-        Log.d("TTS","Start");
+
+
+        text=text.replace(s, "<font color=#cc0029>" + s + "</font>");
+        textView_reader.setText(Html.fromHtml(text));
+
+        Log.d("TTS", "Start");
     }
+
+
+    //click
+
+//    private void init() {
+//        String definition = "Clickable words in text view ".trim();
+//        TextView definitionView = (TextView) findViewById(R.id.textView_reader);
+//        definitionView.setMovementMethod(LinkMovementMethod.getInstance());
+//        definitionView.setText(definition, TextView.BufferType.SPANNABLE);
+//        Spannable spans = (Spannable) definitionView.getText();
+//        BreakIterator iterator = BreakIterator.getLineInstance(Locale.US);
+//        iterator.setText(definition);
+//        int start = iterator.first();
+//        for (int end = iterator.next(); end != BreakIterator.DONE; start = end, end = iterator
+//                .next()) {
+//            String possibleWord = definition.substring(start, end);
+//            if (Character.isLetterOrDigit(possibleWord.charAt(0))) {
+//                ClickableSpan clickSpan = getClickableSpan(possibleWord);
+//                spans.setSpan(clickSpan, start, end,
+//                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//            }
+//        }
+//    }
+//
+//    private ClickableSpan getClickableSpan(final String word) {
+//        return new ClickableSpan() {
+//            final String mWord;
+//            {
+//                mWord = word;
+//            }
+//
+//            @Override
+//            public void onClick(View widget) {
+//                Log.d("tapped on:", mWord);
+//                Toast.makeText(widget.getContext(), mWord, Toast.LENGTH_SHORT)
+//                        .show();
+//            }
+//
+//            public void updateDrawState(TextPaint ds) {
+//                super.updateDrawState(ds);
+//            }
+//        };
+//    }
+
 }
