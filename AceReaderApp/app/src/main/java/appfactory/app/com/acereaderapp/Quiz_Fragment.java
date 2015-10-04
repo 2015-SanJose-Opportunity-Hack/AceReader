@@ -102,7 +102,7 @@ public class Quiz_Fragment extends Fragment {
         button_option_one.setText(option_a);
         button_option_two.setText(option_b);
         button_score.setText("Score: "+score);
-        button_question_no.setText(question_no+"/5");
+        button_question_no.setText(1+question_no+"/5");
 
 
         button_option_one.setOnClickListener(new View.OnClickListener() {
