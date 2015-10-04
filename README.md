@@ -1,5 +1,7 @@
 # AceReader
 
+![alt text](screenshots/start.png "Description goes here")
+
 PayPal – Opportunity Hack
 Framework for Prototype
 Your mission, should you choose to accept it is to develop a prototype of Reading Ace. 
