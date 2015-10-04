@@ -23,8 +23,7 @@ public class ReaderActivity extends Activity implements Speaker.MyUtteranceProgr
     private TextView textView_reader;
 
     private final int CHECK_CODE = 0x1;
-    private final int LONG_DURATION = 5000;
-    private final int SHORT_DURATION = 1200;
+
 
     private Context mContext;
 

@@ -54,9 +54,9 @@
             android:text="@string/Im_ready"
             android:layout_gravity="bottom"
             android:layout_weight="1"
-            android:layout_alignBottom="@+id/textView2"
-            android:layout_alignStart="@+id/textView2"
-            android:layout_alignEnd="@+id/textView2" />
+            android:layout_alignBottom="@+id/textView_reader"
+            android:layout_alignStart="@+id/textView_reader"
+            android:layout_alignParentEnd="true" />
     </RelativeLayout>
 
 
