@@ -16,32 +16,38 @@ import java.util.List;
 public class DBWrapper extends SQLiteOpenHelper {
 
     // Database Version
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     // Database Name
     private static final String DATABASE_NAME = "AceReader";
 
+
+
     public DBWrapper(Context context) {
+
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-//        String CREATE_PASSAGES = "CREATE TABLE passages ( " +
-//                "passage_id INTEGER PRIMARY KEY, " +
-//                "difficulty_level TEXT, "+
-//                "content TEXT )";
-//
-//        String CREATE_QUESTIONS = "CREATE TABLE questions ( " +
-//                "q_id INTEGER PRIMARY KEY, " +
-//                "passage_id INTEGER, " +
-//                "sub_topic INTEGER, " +
-//                "question TEXT, "+
-//                "option_a TEXT, "+
-//                "option_b TEXT, " +
-//                "answer TEXT )";
-//
-//        db.execSQL(CREATE_PASSAGES);
-//        db.execSQL(CREATE_QUESTIONS);
+
+        Log.e("oncreate DBwrapper**","true");
+        String CREATE_PASSAGES = "CREATE TABLE passages ( " +
+                "passage_id INTEGER PRIMARY KEY, " +
+                "difficulty_level TEXT, "+
+                "content TEXT )";
+
+        String CREATE_QUESTIONS = "CREATE TABLE questions ( " +
+                "q_id INTEGER PRIMARY KEY, " +
+                "passage_id INTEGER, " +
+                "sub_topic INTEGER, " +
+                "question TEXT, "+
+                "option_a TEXT, "+
+                "option_b TEXT, " +
+                "answer TEXT )";
+
+        db.execSQL(CREATE_PASSAGES);
+        db.execSQL(CREATE_QUESTIONS);
     }
 
     @Override
@@ -80,30 +86,6 @@ public class DBWrapper extends SQLiteOpenHelper {
 
     private static final String[] QCOLUMNS = {KEY_QID, KEY_QPID, KEY_STID,KEY_QUESTION,KEY_OPTIONA,KEY_OPTIONB, KEY_ANSWER};
 
-
-    public void initializeDB(){
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        db.execSQL("DROP TABLE IF EXISTS passages");
-        db.execSQL("DROP TABLE IF EXISTS questions");
-
-        String CREATE_PASSAGES = "CREATE TABLE passages ( " +
-                "passage_id INTEGER PRIMARY KEY, " +
-                "difficulty_level TEXT, "+
-                "content TEXT )";
-
-        String CREATE_QUESTIONS = "CREATE TABLE questions ( " +
-                "q_id INTEGER PRIMARY KEY, " +
-                "passage_id INTEGER, " +
-                "sub_topic INTEGER, " +
-                "question TEXT, "+
-                "option_a TEXT, "+
-                "option_b TEXT, " +
-                "answer TEXT )";
-
-        db.execSQL(CREATE_PASSAGES);
-        db.execSQL(CREATE_QUESTIONS);
-    }
     public void addPassages(Passages passages){
         Log.d("addPassages", passages.toString());
         // 1. get reference to writable DB
@@ -211,7 +193,6 @@ public class DBWrapper extends SQLiteOpenHelper {
         // 1. get reference to writable DB
         SQLiteDatabase db = this.getWritableDatabase();
 
-        db.execSQL("DROP TABLE " + TABLE_QUESTIONS);
         // 2. create ContentValues to add key "column"/value
         ContentValues values = new ContentValues();
         values.put(KEY_QID, questions.getQid());
