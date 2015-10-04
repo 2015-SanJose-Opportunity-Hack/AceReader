@@ -36,7 +36,9 @@ public class ReaderActivity extends Activity implements Speaker.MyUtteranceProgr
 
     private Speaker speaker;
 
-    private String text="Amazing! I apologize for disturbing you again. Keep going guys.";
+    //private String text="Amazing! I apologize for disturbing you again. Keep going guys.";
+
+    private String text ="";
 
 
 
@@ -64,6 +66,7 @@ public class ReaderActivity extends Activity implements Speaker.MyUtteranceProgr
         btnStartQuiz=(Button)findViewById(R.id.button_startQuiz);
 
         textView_reader.setText(list.get(0).getContent());
+        text = list.get(0).getContent();
 
         btnPlay.setOnClickListener(new View.OnClickListener() {
 

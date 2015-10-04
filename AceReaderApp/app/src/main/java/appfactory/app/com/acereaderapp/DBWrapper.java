@@ -79,7 +79,7 @@ public class DBWrapper extends SQLiteOpenHelper {
     private static final String KEY_STID = "sub_topic";
     private static final String KEY_QUESTION = "question";
     private static final String KEY_OPTIONA = "option_a";
-    private static final String KEY_OPTIONB = "option_a";
+    private static final String KEY_OPTIONB = "option_b";
     private static final String KEY_ANSWER = "answer";
 
     private static final String[] COLUMNS = {KEY_PID, KEY_DL, KEY_CONTENT};
