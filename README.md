@@ -1,6 +1,6 @@
 # AceReader
 
-![alt text](screenshots/start.png "Description goes here")
+![alt text](screenshots/start.png "") ![alt text](screenshots/Screenshot_2015-10-04-13-27-51.png "") 
 
 PayPal – Opportunity Hack
 Framework for Prototype
