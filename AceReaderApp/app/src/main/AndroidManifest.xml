@@ -22,7 +22,7 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".QuizActivity"
+            android:name=".QuizFragmentActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
