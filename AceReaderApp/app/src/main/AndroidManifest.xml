@@ -29,6 +29,10 @@
             android:name=".ReaderActivity"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name=".StartQuizActivity"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>
