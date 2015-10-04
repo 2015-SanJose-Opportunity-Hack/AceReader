@@ -33,6 +33,7 @@ public class DBWrapper extends SQLiteOpenHelper {
 
         String CREATE_QUESTIONS = "CREATE TABLE questions ( " +
                 "q_id INTEGER PRIMARY KEY, " +
+                "passage_id INTEGER, " +
                 "sub_topic INTEGER, " +
                 "question TEXT, "+
                 "option_a TEXT, "+
@@ -68,13 +69,15 @@ public class DBWrapper extends SQLiteOpenHelper {
     private static final String KEY_CONTENT = "content";
 
     // Question Table Columns names
-    private static final String KEY_QID = "question_id";
+    private static final String KEY_QID = "q_id";
     private static final String KEY_QPID = "passage_id";
-    private static final String KEY_STID = "subtopic_id";
+    private static final String KEY_STID = "sub_topic";
     private static final String KEY_QUESTION = "question";
     private static final String KEY_OPTIONA = "option_a";
     private static final String KEY_OPTIONB = "option_a";
     private static final String KEY_ANSWER = "answer";
+
+    private static final String[] COLUMNS = {KEY_PID, KEY_DL, KEY_CONTENT};
 
     private static final String[] QCOLUMNS = {KEY_QID, KEY_QPID, KEY_STID,KEY_QUESTION,KEY_OPTIONA,KEY_OPTIONB, KEY_ANSWER};
 
@@ -98,7 +101,7 @@ public class DBWrapper extends SQLiteOpenHelper {
                     values); // key/value -> keys = column names/ values = column values
         }
         else{
-            Log.e("exists","exists");
+            Log.e("Error","exists");
         }
         // 4. close
         db.close();
@@ -120,19 +123,17 @@ public class DBWrapper extends SQLiteOpenHelper {
                         null, // g. order by
                         null); // h. limit
 
-        // 3. if we got results get the first one
-        if (cursor != null)
-            cursor.moveToFirst();
+        Passages passage=null;
+        if (cursor.moveToFirst()) {
 
-        // 4. build book object
-        Passages passage = new Passages();
-        passage.setPid(Integer.parseInt(cursor.getString(0)));
-        passage.setDl(Integer.parseInt(cursor.getString(1)));
-        passage.setContent(cursor.getString(2));
+            passage = new Passages();
+            passage.setPid(Integer.parseInt(cursor.getString(cursor.getColumnIndex(DBWrapper.KEY_PID))));
+            passage.setDl(Integer.parseInt(cursor.getString(cursor.getColumnIndex(DBWrapper.KEY_DL))));
+            passage.setContent(cursor.getString(cursor.getColumnIndex(DBWrapper.KEY_CONTENT)));
 
-        Log.d("getPassage(" + id + ")", passage.toString());
+            Log.d("getPassage(" + id + ")", passage.toString());
+        }
 
-        // 5. return book
         return passage;
     }
 
@@ -155,14 +156,12 @@ public class DBWrapper extends SQLiteOpenHelper {
                 passage.setDl(Integer.parseInt(cursor.getString(1)));
                 passage.setContent(cursor.getString(2));
 
-                // Add book to books
                 passages.add(passage);
             } while (cursor.moveToNext());
         }
 
         Log.d("getAllPassages()", passages.toString());
 
-        // return books
         return passages;
     }
 
@@ -179,15 +178,17 @@ public class DBWrapper extends SQLiteOpenHelper {
         // 3. close
         db.close();
 
-        Log.d("deleteBook", passages.toString());
+        Log.d("deletePassage", passages.toString());
 
     }
 
     public void addQuestions(Questions questions){
+
         Log.d("addQuestions", questions.toString());
         // 1. get reference to writable DB
         SQLiteDatabase db = this.getWritableDatabase();
 
+        db.execSQL("DROP TABLE " + TABLE_QUESTIONS);
         // 2. create ContentValues to add key "column"/value
         ContentValues values = new ContentValues();
         values.put(KEY_QID, questions.getQid());
@@ -199,20 +200,84 @@ public class DBWrapper extends SQLiteOpenHelper {
         values.put(KEY_ANSWER, questions.getAnswer());
 
 
-
-        Passages temp = getPassage(questions.getPid());
+        Questions temp = getQuestion(questions.getQid());
         // 3. insert
         if(temp==null) {
-            db.insert(TABLE_PASSAGES, // table
+            db.insert(TABLE_QUESTIONS, // table
                     null, //nullColumnHack
                     values); // key/value -> keys = column names/ values = column values
         }
         else{
-            Log.e("exists","exists");
+            Log.e("Error","Entry Exists");
         }
         // 4. close
         db.close();
     }
 
+    public List<Questions> getAllQuestions() {
+        List<Questions> questions = new LinkedList<>();
+
+        // 1. build the query
+        String query = "SELECT  * FROM " + TABLE_QUESTIONS;
+
+        // 2. get reference to writable DB
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        // 3. go over each row, build book and add it to list
+        Questions question = null;
+        if (cursor.moveToFirst()) {
+            do {
+                question = new Questions();
+                question.setQid(Integer.parseInt(cursor.getString(0)));
+                question.setPid(Integer.parseInt(cursor.getString(1)));
+                question.setStid(Integer.parseInt(cursor.getString(2)));
+                question.setQuestion(cursor.getString(3));
+                question.setOption_a(cursor.getString(4));
+                question.setOption_b(cursor.getString(5));
+                question.setAnswer(cursor.getString(6));
+
+                questions.add(question);
+            } while (cursor.moveToNext());
+        }
+
+        Log.d("getAllQuestion()", question.toString());
+
+        return questions;
+    }
+
+    public Questions getQuestion(int id){
+
+        // 1. get reference to readable DB
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // 2. build query
+        Cursor cursor =
+                db.query(TABLE_QUESTIONS, // a. table
+                        QCOLUMNS, // b. column names
+                        " q_id = ?", // c. selections
+                        new String[] { String.valueOf(id) }, // d. selections args
+                        null, // e. group by
+                        null, // f. having
+                        null, // g. order by
+                        null); // h. limit
+
+        Questions question=null;
+        if (cursor.moveToFirst()) {
+
+            question = new Questions();
+            question.setQid(Integer.parseInt(cursor.getString(cursor.getColumnIndex(DBWrapper.KEY_QID))));
+            question.setPid(Integer.parseInt(cursor.getString(cursor.getColumnIndex(DBWrapper.KEY_PID))));
+            question.setStid(Integer.parseInt(cursor.getString(cursor.getColumnIndex(DBWrapper.KEY_STID))));
+            question.setQuestion(cursor.getString(cursor.getColumnIndex(DBWrapper.KEY_QUESTION)));
+            question.setOption_a(cursor.getString(cursor.getColumnIndex(DBWrapper.KEY_OPTIONA)));
+            question.setOption_a(cursor.getString(cursor.getColumnIndex(DBWrapper.KEY_OPTIONB)));
+            question.setAnswer(cursor.getString(cursor.getColumnIndex(DBWrapper.KEY_ANSWER)));
+
+            Log.d("getQuestion(" + id + ")", question.toString());
+        }
+
+        return question;
+    }
 
 }

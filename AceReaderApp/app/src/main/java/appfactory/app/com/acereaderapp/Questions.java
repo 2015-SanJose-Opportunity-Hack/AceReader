@@ -14,6 +14,7 @@ public class Questions {
     private String option_b;
     private String answer;
 
+    public Questions(){}
 
     public Questions(int qid, int pid, int sid, String question, String option_a, String option_b, String answer) {
         this.qid = qid;
