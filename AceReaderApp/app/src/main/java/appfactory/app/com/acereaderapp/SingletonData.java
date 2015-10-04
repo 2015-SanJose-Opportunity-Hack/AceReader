@@ -3,6 +3,8 @@ package appfactory.app.com.acereaderapp;
 import android.util.Log;
 
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by neerajakukday on 10/3/15.
@@ -31,5 +33,17 @@ public class SingletonData {
         }
 
         return quizData.getQuizLevel();
+    }
+
+    public static double waitTimeOnWord(String paragraph){
+
+        Pattern re = Pattern.compile("[^.!?\\s][^.!?]*(?:[.!?](?!['\"]?\\s|$)[^.!?]*)*[.!?]?['\"]?(?=\\s|$)", Pattern.MULTILINE | Pattern.COMMENTS);
+        Matcher reMatcher = re.matcher(paragraph);
+        while (reMatcher.find()) {
+            Log.e("patternOutput",reMatcher.group()+"");
+        }
+
+        return 0;
+
     }
 }

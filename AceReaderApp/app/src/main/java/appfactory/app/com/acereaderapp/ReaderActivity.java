@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
+import android.text.Html;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,8 +13,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import appfactory.app.com.acereaderapp.ttpengine.Speaker;
 
@@ -33,7 +35,7 @@ public class ReaderActivity extends Activity implements Speaker.MyUtteranceProgr
 
     private Speaker speaker;
 
-    private String text="Hey are you having fun. We are here for hacking.";
+    private String text="I apologize for disturbing you again. Keep going guys.";
 
 
     @Override
@@ -44,21 +46,48 @@ public class ReaderActivity extends Activity implements Speaker.MyUtteranceProgr
         mContext=this;
         btnPlay=(ImageButton)findViewById(R.id.button_play);
         btnSettings=(ImageButton)findViewById(R.id.button_settings);
+        btnReplay=(ImageButton)findViewById(R.id.button_replay);
         textView_reader=(TextView)findViewById(R.id.textView_reader);
         btnStartQuiz=(Button)findViewById(R.id.button_startQuiz);
 
         btnPlay.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
-                speaker.allow(true);
-                String[] s = text.split("\\.");
-                for( int i=0;i<s.length;i++)
-                {
-                    speaker.speak(s[i],i);
+                text = text.replaceAll("<font color=#cc0029>", "");
+                text = text.replaceAll("</font>", "");
 
+                if (!speaker.isSpeaking()) {
+                    speaker.allow(true);
+                    Pattern re = Pattern.compile("[^.!?\\s][^.!?]*(?:[.!?](?!['\"]?\\s|$)[^.!?]*)*[.!?]?['\"]?(?=\\s|$)", Pattern.MULTILINE | Pattern.COMMENTS);
+                    Matcher reMatcher = re.matcher(text);
+                    while (reMatcher.find()) {
+                        speaker.speak(reMatcher.group());
+                    }
+                    speaker.done();
+                }else {
+                    speaker.pause();
                 }
             }
         });
+        btnReplay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                text = text.replaceAll("<font color=#cc0029>", "");
+                text = text.replaceAll("</font>", "");
+
+                if (speaker.isSpeaking()) {
+                    speaker.pause();
+                }
+                speaker.allow(true);
+                Pattern re = Pattern.compile("[^.!?\\s][^.!?]*(?:[.!?](?!['\"]?\\s|$)[^.!?]*)*[.!?]?['\"]?(?=\\s|$)", Pattern.MULTILINE | Pattern.COMMENTS);
+                Matcher reMatcher = re.matcher(text);
+                while (reMatcher.find()) {
+                    speaker.speak(reMatcher.group());
+                }
+                speaker.done();
+        }
+    });
 
         btnSettings.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,6 +133,7 @@ public class ReaderActivity extends Activity implements Speaker.MyUtteranceProgr
             if(resultCode == TextToSpeech.Engine.CHECK_VOICE_DATA_PASS){
                 speaker = new Speaker(this);
                 speaker.setInterface(this);
+
             }else {
                 Intent install = new Intent();
                 install.setAction(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA);
@@ -144,15 +174,68 @@ public class ReaderActivity extends Activity implements Speaker.MyUtteranceProgr
 
 
     @Override
-    public void onTTSDone() {
-        btnPlay.setImageResource(R.drawable.play);
+    public void onTTSDone(String s) {
+        if(s.equals("last_id"))
+            btnPlay.setImageResource(R.drawable.play);
         Log.d("TTS", "Stop");
+        text=text.replaceAll("<font color=#cc0029>","");
+        text=text.replaceAll("</font>","");
 
     }
 
     @Override
-    public void onTTSStart() {
+    public void onTTSStart(String s) {
         btnPlay.setImageResource(R.drawable.pause);
-        Log.d("TTS","Start");
+        btnPlay.setTag(R.drawable.pause);
+
+
+        text=text.replace(s, "<font color=#cc0029>" + s + "</font>");
+        textView_reader.setText(Html.fromHtml(text));
+
+        Log.d("TTS", "Start");
     }
+
+
+    //click
+
+//    private void init() {
+//        String definition = "Clickable words in text view ".trim();
+//        TextView definitionView = (TextView) findViewById(R.id.textView_reader);
+//        definitionView.setMovementMethod(LinkMovementMethod.getInstance());
+//        definitionView.setText(definition, TextView.BufferType.SPANNABLE);
+//        Spannable spans = (Spannable) definitionView.getText();
+//        BreakIterator iterator = BreakIterator.getLineInstance(Locale.US);
+//        iterator.setText(definition);
+//        int start = iterator.first();
+//        for (int end = iterator.next(); end != BreakIterator.DONE; start = end, end = iterator
+//                .next()) {
+//            String possibleWord = definition.substring(start, end);
+//            if (Character.isLetterOrDigit(possibleWord.charAt(0))) {
+//                ClickableSpan clickSpan = getClickableSpan(possibleWord);
+//                spans.setSpan(clickSpan, start, end,
+//                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//            }
+//        }
+//    }
+//
+//    private ClickableSpan getClickableSpan(final String word) {
+//        return new ClickableSpan() {
+//            final String mWord;
+//            {
+//                mWord = word;
+//            }
+//
+//            @Override
+//            public void onClick(View widget) {
+//                Log.d("tapped on:", mWord);
+//                Toast.makeText(widget.getContext(), mWord, Toast.LENGTH_SHORT)
+//                        .show();
+//            }
+//
+//            public void updateDrawState(TextPaint ds) {
+//                super.updateDrawState(ds);
+//            }
+//        };
+//    }
+
 }
