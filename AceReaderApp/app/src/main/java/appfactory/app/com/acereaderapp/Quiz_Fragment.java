@@ -98,8 +98,6 @@ public class Quiz_Fragment extends Fragment {
         textview_question = (TextView)view.findViewById(R.id.textView_question);
         button_score = (Button)view.findViewById(R.id.button_score);
         button_question_no = (Button)view.findViewById(R.id.button_question_no);
-        button_stop_quiz = (ImageButton)view.findViewById(R.id.stopQuiz);
-
 
         textview_question.setText(question);
 
@@ -146,11 +144,6 @@ public class Quiz_Fragment extends Fragment {
             }
         });
 
-        button_stop_quiz.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            } });
 
         button_option_next.setOnClickListener(new View.OnClickListener() {
             @Override
