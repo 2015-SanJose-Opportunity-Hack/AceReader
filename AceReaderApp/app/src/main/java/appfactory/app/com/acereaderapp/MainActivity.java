@@ -24,20 +24,20 @@ public class MainActivity extends Activity {
 
         DBWrapper db = new DBWrapper(this);
 
+        db.initializeDB();
         //add Passage
         db.addPassages(new Passages(9,1,SingletonData.passageDump));
 
         //add questions
-        db.addQuestions(new Questions(1, 2, 1, "Which word has '\"a\"' as in the word '\"same\"'?", "many","named","option_b"));
+        //db.addQuestions(new Questions(1, 2, 1, "Which word has '\"a\"' as in the word '\"same\"'?", "many","named","option_b"));
 
 
         List<Passages> list = db.getAllPassages();
-        List<Questions> questions = db.getAllQuestions();
+        //List<Questions> questions = db.getAllQuestions();
 
         Log.e("size",list.size()+"");
         Log.e("Passage", list.get(0).getContent());
-
-        Log.d("Questions",questions.get(0).getAnswer());
+        //Log.d("Questions",questions.get(0).getAnswer());
 
 
         mContext=this;

@@ -26,23 +26,22 @@ public class DBWrapper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_PASSAGES = "CREATE TABLE passages ( " +
-                "passage_id INTEGER PRIMARY KEY, " +
-                "difficulty_level TEXT, "+
-                "content TEXT )";
-
-        String CREATE_QUESTIONS = "CREATE TABLE questions ( " +
-                "q_id INTEGER PRIMARY KEY, " +
-                "passage_id INTEGER, " +
-                "sub_topic INTEGER, " +
-                "question TEXT, "+
-                "option_a TEXT, "+
-                "option_b TEXT, " +
-                "answer TEXT )";
-
-        // create books table
-        db.execSQL(CREATE_PASSAGES);
-        db.execSQL(CREATE_QUESTIONS);
+//        String CREATE_PASSAGES = "CREATE TABLE passages ( " +
+//                "passage_id INTEGER PRIMARY KEY, " +
+//                "difficulty_level TEXT, "+
+//                "content TEXT )";
+//
+//        String CREATE_QUESTIONS = "CREATE TABLE questions ( " +
+//                "q_id INTEGER PRIMARY KEY, " +
+//                "passage_id INTEGER, " +
+//                "sub_topic INTEGER, " +
+//                "question TEXT, "+
+//                "option_a TEXT, "+
+//                "option_b TEXT, " +
+//                "answer TEXT )";
+//
+//        db.execSQL(CREATE_PASSAGES);
+//        db.execSQL(CREATE_QUESTIONS);
     }
 
     @Override
@@ -81,6 +80,30 @@ public class DBWrapper extends SQLiteOpenHelper {
 
     private static final String[] QCOLUMNS = {KEY_QID, KEY_QPID, KEY_STID,KEY_QUESTION,KEY_OPTIONA,KEY_OPTIONB, KEY_ANSWER};
 
+
+    public void initializeDB(){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        db.execSQL("DROP TABLE IF EXISTS passages");
+        db.execSQL("DROP TABLE IF EXISTS questions");
+
+        String CREATE_PASSAGES = "CREATE TABLE passages ( " +
+                "passage_id INTEGER PRIMARY KEY, " +
+                "difficulty_level TEXT, "+
+                "content TEXT )";
+
+        String CREATE_QUESTIONS = "CREATE TABLE questions ( " +
+                "q_id INTEGER PRIMARY KEY, " +
+                "passage_id INTEGER, " +
+                "sub_topic INTEGER, " +
+                "question TEXT, "+
+                "option_a TEXT, "+
+                "option_b TEXT, " +
+                "answer TEXT )";
+
+        db.execSQL(CREATE_PASSAGES);
+        db.execSQL(CREATE_QUESTIONS);
+    }
     public void addPassages(Passages passages){
         Log.d("addPassages", passages.toString());
         // 1. get reference to writable DB
