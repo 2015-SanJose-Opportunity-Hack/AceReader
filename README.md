@@ -1,6 +1,5 @@
 # AceReader
 
-:-------------------------:|:-------------------------:
 ![](screenshots/start.png "")  |  ![](screenshots/Screenshot_2015-10-04-13-27-51.png "")
   
 
