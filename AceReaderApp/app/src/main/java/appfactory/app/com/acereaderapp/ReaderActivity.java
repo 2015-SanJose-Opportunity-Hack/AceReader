@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import java.util.HashMap;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -38,10 +39,22 @@ public class ReaderActivity extends Activity implements Speaker.MyUtteranceProgr
     private String text="I apologize for disturbing you again. Keep going guys.";
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.reader_layout);
+
+
+        //DataBase
+        DBWrapper db = new DBWrapper(this);
+        db.getReadableDatabase();
+
+        List<Passages> list = db.getAllPassages();
+
+        Log.d("size", list.size() + "");
+        Log.d("Passage", list.get(0).getContent());
+        //---
 
         mContext=this;
         btnPlay=(ImageButton)findViewById(R.id.button_play);
@@ -49,6 +62,8 @@ public class ReaderActivity extends Activity implements Speaker.MyUtteranceProgr
         btnReplay=(ImageButton)findViewById(R.id.button_replay);
         textView_reader=(TextView)findViewById(R.id.textView_reader);
         btnStartQuiz=(Button)findViewById(R.id.button_startQuiz);
+
+        textView_reader.setText(list.get(0).getContent());
 
         btnPlay.setOnClickListener(new View.OnClickListener() {
 

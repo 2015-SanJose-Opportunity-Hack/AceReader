@@ -34,16 +34,16 @@ public class SingletonData {
 
         return quizData.getQuizLevel();
     }
-
-    public static double waitTimeOnWord(String paragraph){
-
-        Pattern re = Pattern.compile("[^.!?\\s][^.!?]*(?:[.!?](?!['\"]?\\s|$)[^.!?]*)*[.!?]?['\"]?(?=\\s|$)", Pattern.MULTILINE | Pattern.COMMENTS);
-        Matcher reMatcher = re.matcher(paragraph);
-        while (reMatcher.find()) {
-            Log.e("patternOutput",reMatcher.group()+"");
-        }
-
-        return 0;
-
-    }
+//
+//    public static double waitTimeOnWord(String paragraph){
+//
+//        Pattern re = Pattern.compile("[^.!?\\s][^.!?]*(?:[.!?](?!['\"]?\\s|$)[^.!?]*)*[.!?]?['\"]?(?=\\s|$)", Pattern.MULTILINE | Pattern.COMMENTS);
+//        Matcher reMatcher = re.matcher(paragraph);
+//        while (reMatcher.find()) {
+//            Log.e("patternOutput",reMatcher.group()+"");
+//        }
+//
+//        return 0;
+//
+//    }
 }
