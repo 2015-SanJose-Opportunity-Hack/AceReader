@@ -114,12 +114,9 @@ public class Quiz_Fragment extends Fragment {
             public void onClick(View view) {
                 if (answer.equals("option_a")) {
                     button_option_one.setCompoundDrawablesWithIntrinsicBounds(R.drawable.tick, 0, 0, 0);
-<<<<<<< HEAD
-                    ((QuizFragmentActivity) getActivity()).incrementScore();
-=======
+
                    // ((QuizFragmentActivity)getActivity()).incrementScore();
                     SingletonData.setScore(SingletonData.getScore() + 1);
->>>>>>> c69aa08288cda4f159f2df01704a4aaf3a3e42a3
 
                 } else {
                     button_option_one.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cross, 0, 0, 0);
