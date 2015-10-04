@@ -54,7 +54,7 @@ public class RecyclerViewActivity extends Activity {
         RVAdapter.OnItemClickListener onItemClickListener = new RVAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View v, int position) {
-                
+
             }
         };
         adapter.setOnItemClickListener(onItemClickListener);
