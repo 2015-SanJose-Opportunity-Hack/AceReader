@@ -43,7 +43,6 @@
            android:layout_width="match_parent"
            android:layout_height="match_parent"
            android:id="@+id/textView_reader"
-           android:text="Hey! I'm new to this school."
            android:background="@color/background_floating_material_dark"
            android:textColor="@color/whiteText"
            android:textSize="20sp"

@@ -27,7 +27,6 @@ public class MainActivity extends Activity {
         DBWrapper db = new DBWrapper(this);
         db.getReadableDatabase();
 
-        db.getReadableDatabase();
         //add Passage
         db.addPassages(new Passages(1, 1, SingletonData.passageDump));
 
@@ -59,7 +58,7 @@ public class MainActivity extends Activity {
 
         Log.d("size", list.size() + "");
         Log.d("Passage", list.get(0).getContent());
-        Log.d("Questions",questions.get(0).getAnswer());
+        Log.d("Questions123",questions.get(0).getOption_a());
 
         mContext = this;
         btnStart = (Button) findViewById(R.id.button_start);

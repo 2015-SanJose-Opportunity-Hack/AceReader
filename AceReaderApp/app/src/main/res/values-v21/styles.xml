@@ -15,5 +15,11 @@
 
     <style name="Your.Button" parent="android:style/Widget.Material.Button">
         <item name="android:background">@drawable/primary_round</item>
+    </style>>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 </resources>
