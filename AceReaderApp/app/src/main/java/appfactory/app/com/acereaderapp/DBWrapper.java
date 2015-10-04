@@ -16,16 +16,22 @@ import java.util.List;
 public class DBWrapper extends SQLiteOpenHelper {
 
     // Database Version
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     // Database Name
     private static final String DATABASE_NAME = "AceReader";
 
+
+
     public DBWrapper(Context context) {
+
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+
+        Log.e("oncreate DBwrapper**","true");
         String CREATE_PASSAGES = "CREATE TABLE passages ( " +
                 "passage_id INTEGER PRIMARY KEY, " +
                 "difficulty_level TEXT, "+
