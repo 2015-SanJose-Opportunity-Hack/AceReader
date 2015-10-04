@@ -45,7 +45,8 @@
            android:id="@+id/textView_reader"
            android:background="@color/background_floating_material_dark"
            android:textColor="@color/whiteText"
-           android:textSize="20sp"
+           android:textSize="30sp"
+
            />
         <Button
             android:layout_width="120dp"

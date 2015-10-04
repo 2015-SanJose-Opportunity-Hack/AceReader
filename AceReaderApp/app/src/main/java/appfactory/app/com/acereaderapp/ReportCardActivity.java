@@ -1,9 +1,9 @@
 package appfactory.app.com.acereaderapp;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.os.Bundle;
 
-public class ReportCardActivity extends AppCompatActivity {
+public class ReportCardActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
