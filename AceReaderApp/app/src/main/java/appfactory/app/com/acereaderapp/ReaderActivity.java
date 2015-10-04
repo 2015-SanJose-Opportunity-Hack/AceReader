@@ -36,7 +36,7 @@ public class ReaderActivity extends Activity implements Speaker.MyUtteranceProgr
 
     private Speaker speaker;
 
-    private String text="I apologize for disturbing you again. Keep going guys.";
+    private String text="Amazing! I apologize for disturbing you again. Keep going guys.";
 
 
 
@@ -118,7 +118,9 @@ public class ReaderActivity extends Activity implements Speaker.MyUtteranceProgr
         btnStartQuiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext, QuizActivity.class);
+
+
+                Intent intent = new Intent(mContext, QuizFragmentActivity.class);
                 mContext.startActivity(intent);
 
             }

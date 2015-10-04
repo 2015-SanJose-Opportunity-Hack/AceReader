@@ -96,6 +96,8 @@ public class Speaker extends UtteranceProgressListener implements OnInitListener
                     "last_id");
             tts.speak("", TextToSpeech.QUEUE_FLUSH, myHashAlarm);
 
+
+
         }
     }
     public void done() {
