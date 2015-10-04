@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 
@@ -22,7 +23,7 @@ public class Quiz_Fragment extends Fragment {
     private TextView textview_question;
     private Button button_option_one;
     private Button button_option_two;
-    private Button button_option_next;
+    private ImageButton button_option_next;
 
     private  OnButtonClickListener mCallback;
 
@@ -32,9 +33,7 @@ public class Quiz_Fragment extends Fragment {
     private String option_a;
     private String option_b;
     private String answer;
-
-
-
+    private  int question_no;
 
 
     // TODO: Rename and change types and number of parameters
@@ -49,17 +48,18 @@ public class Quiz_Fragment extends Fragment {
         fragment.setArguments(args);
 
 
-        fragment.setQuestion(questions);
+        fragment.setQuestion(questions,qustionNo);
 
         return fragment;
     }
 
-    void setQuestion(Questions questions){
+    void setQuestion(Questions questions,int question_no){
 
-        question = questions.getQuestion();
-        option_a = questions.getOption_a();
-        option_b = questions.getOption_b();
-        answer = questions.getAnswer();
+        this.question = questions.getQuestion();
+        this.option_a = questions.getOption_a();
+        this.option_b = questions.getOption_b();
+        this.answer = questions.getAnswer();
+        this.question_no=question_no;
     }
 
     public Quiz_Fragment(){
@@ -85,7 +85,7 @@ public class Quiz_Fragment extends Fragment {
         View view=inflater.inflate(R.layout.fragment_quiz_fragment, container, false);
         button_option_one = (Button)view.findViewById(R.id.button_option1);
         button_option_two = (Button)view.findViewById(R.id.button_option2);
-
+        button_option_next = (ImageButton)view.findViewById(R.id.btn_next);
         textview_question = (TextView)view.findViewById(R.id.textView_question);
         textview_question.setText(question);
 
@@ -97,14 +97,12 @@ public class Quiz_Fragment extends Fragment {
             @Override
             public void onClick(View view) {
                 disableOptions();
-                if(answer.equals("option_a")){
+                if (answer.equals("option_a")) {
                     button_option_one.setCompoundDrawablesWithIntrinsicBounds(R.drawable.tick, 0, 0, 0);
 
-                }
-                else {
+                } else {
                     button_option_one.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cross, 0, 0, 0);
                 }
-                mCallback.onButtonClickListener(view);
 
             }
         });
@@ -119,6 +117,13 @@ public class Quiz_Fragment extends Fragment {
                 else {
                     button_option_two.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cross, 0, 0, 0);
                 }
+
+            }
+        });
+
+        button_option_next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 mCallback.onButtonClickListener(view);
 
             }
