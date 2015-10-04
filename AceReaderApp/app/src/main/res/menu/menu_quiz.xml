@@ -3,9 +3,13 @@
 
     <item
         android:id="@+id/action_read"
-        android:icon="@drawable/book"
         android:showAsAction="always"
         android:orderInCategory="9999"
-        android:title="Read" />
+        android:title="View Passage"
+
+        />
+
+    <!--android:icon="@drawable/book"-->
+
 
 </menu>
