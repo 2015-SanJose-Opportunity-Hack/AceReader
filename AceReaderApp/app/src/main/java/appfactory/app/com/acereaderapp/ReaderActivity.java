@@ -71,7 +71,7 @@ public class ReaderActivity extends Activity implements Speaker.MyUtteranceProgr
 
             @Override
             public void onClick(View view) {
-                text = text.replaceAll("<font color=#cc0029>", "");
+                text = text.replaceAll("<font color=#0000FF>", "");
                 text = text.replaceAll("</font>", "");
 
                 if (!speaker.isSpeaking()) {
@@ -90,7 +90,7 @@ public class ReaderActivity extends Activity implements Speaker.MyUtteranceProgr
         btnReplay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                text = text.replaceAll("<font color=#cc0029>", "");
+                text = text.replaceAll("<font color=#0000FF>", "");
                 text = text.replaceAll("</font>", "");
 
                 if (speaker.isSpeaking()) {
@@ -178,7 +178,7 @@ public class ReaderActivity extends Activity implements Speaker.MyUtteranceProgr
         if(s.equals("last_id"))
             btnPlay.setImageResource(R.drawable.play);
         Log.d("TTS", "Stop");
-        text=text.replaceAll("<font color=#cc0029>","");
+        text=text.replaceAll("<font color=#0000FF>","");
         text=text.replaceAll("</font>","");
 
     }
@@ -189,53 +189,10 @@ public class ReaderActivity extends Activity implements Speaker.MyUtteranceProgr
         btnPlay.setTag(R.drawable.pause);
 
 
-        text=text.replace(s, "<font color=#cc0029>" + s + "</font>");
+        text=text.replace(s, "<font color=#0000FF>" + s + "</font>");
         textView_reader.setText(Html.fromHtml(text));
 
         Log.d("TTS", "Start");
     }
-
-
-    //click
-
-//    private void init() {
-//        String definition = "Clickable words in text view ".trim();
-//        TextView definitionView = (TextView) findViewById(R.id.textView_reader);
-//        definitionView.setMovementMethod(LinkMovementMethod.getInstance());
-//        definitionView.setText(definition, TextView.BufferType.SPANNABLE);
-//        Spannable spans = (Spannable) definitionView.getText();
-//        BreakIterator iterator = BreakIterator.getLineInstance(Locale.US);
-//        iterator.setText(definition);
-//        int start = iterator.first();
-//        for (int end = iterator.next(); end != BreakIterator.DONE; start = end, end = iterator
-//                .next()) {
-//            String possibleWord = definition.substring(start, end);
-//            if (Character.isLetterOrDigit(possibleWord.charAt(0))) {
-//                ClickableSpan clickSpan = getClickableSpan(possibleWord);
-//                spans.setSpan(clickSpan, start, end,
-//                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-//            }
-//        }
-//    }
-//
-//    private ClickableSpan getClickableSpan(final String word) {
-//        return new ClickableSpan() {
-//            final String mWord;
-//            {
-//                mWord = word;
-//            }
-//
-//            @Override
-//            public void onClick(View widget) {
-//                Log.d("tapped on:", mWord);
-//                Toast.makeText(widget.getContext(), mWord, Toast.LENGTH_SHORT)
-//                        .show();
-//            }
-//
-//            public void updateDrawState(TextPaint ds) {
-//                super.updateDrawState(ds);
-//            }
-//        };
-//    }
 
 }

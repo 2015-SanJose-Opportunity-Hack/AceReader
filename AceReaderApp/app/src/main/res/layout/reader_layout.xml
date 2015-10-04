@@ -3,34 +3,7 @@
     android:layout_width="match_parent" android:layout_height="fill_parent"
     android:orientation="vertical"
     >
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="5dp"
-        android:layout_gravity="center"
-        android:background="@color/background_floating_material_dark">
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button_play"
-        android:src="@drawable/play"
-        />
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/replay"
-            android:id="@+id/button_replay"
-            />
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/gear"
-            android:id="@+id/button_settings"
-            />
-
-    </LinearLayout>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent" android:layout_height="match_parent"
@@ -43,11 +16,42 @@
            android:layout_width="match_parent"
            android:layout_height="match_parent"
            android:id="@+id/textView_reader"
-           android:background="@color/background_floating_material_dark"
-           android:textColor="@color/whiteText"
+           android:background="@color/whiteText"
+           android:textColor="@color/bright_foreground_inverse_material_dark"
            android:textSize="30sp"
 
            />
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:background="@color/whiteText"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_above="@+id/button_startQuiz"
+            android:layout_centerHorizontal="true">
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button_play"
+                android:src="@drawable/play"
+                />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/replay"
+                android:id="@+id/button_replay"
+                />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/gear"
+                android:id="@+id/button_settings"
+                />
+
+        </LinearLayout>
         <Button
             android:layout_width="120dp"
             android:layout_height="wrap_content"
@@ -63,6 +67,8 @@
             android:layout_alignStart="@+id/textView_reader"
             android:layout_alignParentEnd="true"
             android:id="@+id/button_startQuiz"/>
+
+
     </RelativeLayout>
 
 
