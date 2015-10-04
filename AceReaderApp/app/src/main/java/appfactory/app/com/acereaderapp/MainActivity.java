@@ -32,9 +32,9 @@ public class MainActivity extends Activity {
         db.addPassages(new Passages(1, 1, SingletonData.passageDump));
 
         //add questions
-        db.addQuestions(new Questions(1, 1, 1, "Which of the following words begin with the sound '\"R\"'?", "Wali", "rabbit", "option_b"));
-        db.addQuestions(new Questions(2, 1, 1, "Which word has '\"a\"' as in the word '\"same\"'?", "many", "named", "option_b"));
-        db.addQuestions(new Questions(3, 1, 1, "Which word has '\"d\"' as ithe last sound? ?", "lived", "eaten", "option_a"));
+        db.addQuestions(new Questions(1, 1, 1, "Which of the following words begin with the sound \"R\"?", "Wali", "rabbit", "option_b"));
+        db.addQuestions(new Questions(2, 1, 1, "Which word has \"a\" as in the word \"same\"?", "many", "named", "option_b"));
+        db.addQuestions(new Questions(3, 1, 1, "Which word has \"d\" as ithe last sound? ?", "lived", "eaten", "option_a"));
         db.addQuestions(new Questions(4, 1, 2, "How many syllables are in the word '\"become\"'? ", "2", "3", "option_a"));
         db.addQuestions(new Questions(5, 1, 2, "What word results from blending the sounds '\"wo\"', '\"l\"', and '\"f\"'?", "wolves", "wolf", "option_b"));
         db.addQuestions(new Questions(6, 1, 2, "What word do you get by blending the syllables: '\"be\"' + '\"come\"'", "because", "become", "option_b"));
