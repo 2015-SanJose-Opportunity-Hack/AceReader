@@ -56,7 +56,7 @@ public class MainActivity extends Activity {
         List<Passages> list = db.getAllPassages();
         List<Questions> questions = db.getAllQuestions();
 
-        Log.d("size", list.size() + "");
+        Log.d("size", questions.size() + "");
         Log.d("Passage", list.get(0).getContent());
         Log.d("Questions123",questions.get(0).getOption_a());
 
