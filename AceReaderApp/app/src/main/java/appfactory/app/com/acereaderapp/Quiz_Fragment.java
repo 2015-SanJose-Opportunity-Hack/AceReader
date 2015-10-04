@@ -7,14 +7,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 
 public class Quiz_Fragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String ARG_QUESTION = "Question";
+    private static final String ARG_OPTION_ONE = "Option_a";
+    private static final String ARG_OPTION_TWO = "Option_b";
+    private static final String ARG_ANSWER = "Answer";
 
+
+    private TextView textview_question;
     private Button button_option_one;
     private Button button_option_two;
     private Button button_option_next;
@@ -23,38 +28,53 @@ public class Quiz_Fragment extends Fragment {
 
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private String question;
+    private String option_a;
+    private String option_b;
+    private String answer;
 
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment quiz_fragment.
-     */
+
+
+
     // TODO: Rename and change types and number of parameters
-    public static Quiz_Fragment newInstance(String param1, String param2) {
+    public static Quiz_Fragment newInstance(Questions questions,int qustionNo) {
         Quiz_Fragment fragment = new Quiz_Fragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putString(ARG_QUESTION, questions.getQuestion());
+        args.putString(ARG_OPTION_ONE, questions.getOption_a());
+        args.putString(ARG_OPTION_TWO, questions.getOption_b());
+        args.putString(ARG_ANSWER, questions.getAnswer());
+
         fragment.setArguments(args);
+
+
+        fragment.setQuestion(questions);
+
         return fragment;
     }
 
-    public Quiz_Fragment() {
-        // Required empty public constructor
+    void setQuestion(Questions questions){
+
+        question = questions.getQuestion();
+        option_a = questions.getOption_a();
+        option_b = questions.getOption_b();
+        answer = questions.getAnswer();
+    }
+
+    public Quiz_Fragment(){
+        //required
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            question = getArguments().getString(ARG_QUESTION);
+            option_a = getArguments().getString(ARG_OPTION_ONE);
+            option_b = getArguments().getString(ARG_OPTION_TWO);
+            answer = getArguments().getString(ARG_ANSWER);
+
         }
     }
 
@@ -66,10 +86,24 @@ public class Quiz_Fragment extends Fragment {
         button_option_one = (Button)view.findViewById(R.id.button_option1);
         button_option_two = (Button)view.findViewById(R.id.button_option2);
 
+        textview_question = (TextView)view.findViewById(R.id.textView_question);
+        textview_question.setText(question);
+
+        button_option_one.setText(option_a);
+        button_option_two.setText(option_b);
+
 
         button_option_one.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                disableOptions();
+                if(answer.equals("option_a")){
+                    button_option_one.setCompoundDrawablesWithIntrinsicBounds(R.drawable.tick, 0, 0, 0);
+
+                }
+                else {
+                    button_option_one.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cross, 0, 0, 0);
+                }
                 mCallback.onButtonClickListener(view);
 
             }
@@ -78,12 +112,25 @@ public class Quiz_Fragment extends Fragment {
         button_option_two.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                disableOptions();
+                if(answer.equals("option_b")){
+                    button_option_two.setCompoundDrawablesWithIntrinsicBounds(R.drawable.tick, 0, 0, 0);
+                }
+                else {
+                    button_option_two.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cross, 0, 0, 0);
+                }
                 mCallback.onButtonClickListener(view);
 
             }
         });
 
         return view;
+    }
+
+    void disableOptions(){
+        button_option_two.setClickable(false);
+        button_option_one.setClickable(false);
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event

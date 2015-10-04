@@ -5,12 +5,15 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
+
+import java.util.List;
 
 /**
  * Created by neerajakukday on 10/3/15.
  */
 public class QuizFragmentActivity extends Activity implements Quiz_Fragment.OnButtonClickListener {
+
+    DBWrapper db;
 
 
     @Override
@@ -18,8 +21,12 @@ public class QuizFragmentActivity extends Activity implements Quiz_Fragment.OnBu
         super.onCreate(savedInstanceState);
         setContentView(R.layout.quiz_fragment_activity);
 
-// Create an instance of ExampleFragment
-        Quiz_Fragment quiz_fragment = new Quiz_Fragment();
+
+       db = new DBWrapper(this);
+        List<Questions> questions = db.getAllQuestions();
+
+    // Create an instance of ExampleFragment
+        Quiz_Fragment quiz_fragment = Quiz_Fragment.newInstance(questions.get(0));
 //
 //            // In case this activity was started with special instructions from an Intent,
 //            // pass the Intent's extras to the fragment as arguments
@@ -39,9 +46,6 @@ public class QuizFragmentActivity extends Activity implements Quiz_Fragment.OnBu
 
     @Override
     public void onButtonClickListener(View view) {
-
-        Toast.makeText(this,"Clicked",Toast.LENGTH_SHORT).show();
-
 
     }
 }
