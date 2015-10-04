@@ -5,7 +5,6 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -47,9 +46,6 @@ public class QuizFragmentActivity extends Activity implements Quiz_Fragment.OnBu
 
     @Override
     public void onButtonClickListener(View view) {
-
-        Toast.makeText(this,"Clicked",Toast.LENGTH_SHORT).show();
-
 
     }
 }

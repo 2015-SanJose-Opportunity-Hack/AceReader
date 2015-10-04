@@ -38,7 +38,7 @@ public class Quiz_Fragment extends Fragment {
 
 
     // TODO: Rename and change types and number of parameters
-    public static Quiz_Fragment newInstance(Questions questions) {
+    public static Quiz_Fragment newInstance(Questions questions,int qustionNo) {
         Quiz_Fragment fragment = new Quiz_Fragment();
         Bundle args = new Bundle();
         args.putString(ARG_QUESTION, questions.getQuestion());
