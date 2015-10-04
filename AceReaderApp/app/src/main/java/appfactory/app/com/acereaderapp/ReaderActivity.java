@@ -121,9 +121,7 @@ public class ReaderActivity extends Activity implements Speaker.MyUtteranceProgr
         btnStartQuiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-                Intent intent = new Intent(mContext, QuizFragmentActivity.class);
+                Intent intent = new Intent(mContext, StartQuizActivity.class);
                 mContext.startActivity(intent);
 
             }

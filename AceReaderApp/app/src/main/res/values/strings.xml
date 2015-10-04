@@ -13,9 +13,11 @@
     <string name="score">Score:</string>
     <string name="attemp">1/5</string>
     <string name="Submit">SUBMIT</string>
+    <string name="play_again">Play again</string>
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_bar_chart">BarChartActivity</string>
     <string name="title_activity_start_quiz">StartQuizActivity</string>
+    <string name="quizRules">This Quiz will contain 5 questions. Press the icon above to start.</string>
 </resources>
