@@ -59,6 +59,7 @@ public class QuizFragmentActivity extends Activity implements Quiz_Fragment.OnBu
         questionNo++;
         if(questionNo>=5){
             Intent intent = new Intent(mContext, ResultActivity.class);
+            intent.putExtra("FINAL_SCORE",score);
             mContext.startActivity(intent);
             Toast.makeText(getBaseContext(),"Quiz over! Thank you.",Toast.LENGTH_SHORT).show();
         }else {

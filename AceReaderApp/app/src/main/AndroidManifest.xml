@@ -17,6 +17,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name=".RecyclerViewActivity"
@@ -32,21 +33,12 @@
         </activity>
 
         <activity
-            android:name=".ReportCardActivity"
-            android:screenOrientation="portrait">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
-
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
-        </activity>
-
-        <activity
             android:name=".StartQuizActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity android:name=".ResultActivity"
             android:screenOrientation="portrait" >
+
         </activity>
     </application>
 
