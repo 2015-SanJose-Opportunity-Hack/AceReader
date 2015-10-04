@@ -222,7 +222,7 @@ public class DBWrapper extends SQLiteOpenHelper {
         List<Questions> questions = new LinkedList<>();
 
         // 1. build the query
-        String query = "SELECT  * FROM " + TABLE_QUESTIONS;
+        String query = "SELECT  * FROM questions ORDER BY RANDOM() LIMIT 5";
 
         // 2. get reference to writable DB
         SQLiteDatabase db = this.getWritableDatabase();
