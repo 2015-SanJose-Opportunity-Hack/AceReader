@@ -13,7 +13,7 @@
     <string name="score">Score:</string>
     <string name="attemp">1/5</string>
     <string name="Submit">SUBMIT</string>
-    <string name="play_again">Play again</string>
+    <string name="play_again">Replay</string>
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
