@@ -78,6 +78,8 @@ public class MainActivity extends Activity {
         btnReport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(mContext, ReportCardActivity.class);
+                mContext.startActivity(intent);
 
 
             }

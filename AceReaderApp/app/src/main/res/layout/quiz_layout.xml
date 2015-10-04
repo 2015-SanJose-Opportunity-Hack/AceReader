@@ -131,7 +131,7 @@
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/imageButton3"
+                android:id="@+id/stopQuiz"
                 android:background="@drawable/stop"
                 android:layout_alignTop="@+id/imageButton2"
                 android:layout_centerHorizontal="true" />

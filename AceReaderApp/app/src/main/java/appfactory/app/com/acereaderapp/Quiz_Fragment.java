@@ -2,6 +2,7 @@ package appfactory.app.com.acereaderapp;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,12 +26,14 @@ public class Quiz_Fragment extends Fragment {
     private Button button_option_two;
     private Button button_score;
     private Button button_question_no;
+    private ImageButton button_stop_quiz;
 
 
     private ImageButton button_option_next;
 
     private  OnButtonClickListener mCallback;
 
+    QuizFragmentActivity quizFragmentActivity = new QuizFragmentActivity();
 
     // TODO: Rename and change types of parameters
     private String question;
@@ -95,6 +98,7 @@ public class Quiz_Fragment extends Fragment {
         textview_question = (TextView)view.findViewById(R.id.textView_question);
         button_score = (Button)view.findViewById(R.id.button_score);
         button_question_no = (Button)view.findViewById(R.id.button_question_no);
+        button_stop_quiz = (ImageButton)view.findViewById(R.id.stopQuiz);
 
 
         textview_question.setText(question);
@@ -111,7 +115,7 @@ public class Quiz_Fragment extends Fragment {
                 disableOptions();
                 if (answer.equals("option_a")) {
                     button_option_one.setCompoundDrawablesWithIntrinsicBounds(R.drawable.tick, 0, 0, 0);
-                    ((QuizFragmentActivity)getActivity()).incrementScore();
+                    ((QuizFragmentActivity) getActivity()).incrementScore();
 
                 } else {
                     button_option_one.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cross, 0, 0, 0);
@@ -136,6 +140,12 @@ public class Quiz_Fragment extends Fragment {
             }
         });
 
+        button_stop_quiz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            } });
+
         button_option_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -147,7 +157,7 @@ public class Quiz_Fragment extends Fragment {
         return view;
     }
 
-    void disableOptions(){
+    void disableOptions() {
         button_option_two.setClickable(false);
         button_option_one.setClickable(false);
 
