@@ -15,16 +15,8 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/textView2"
         android:layout_marginTop="187dp" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/quizRules"
-        android:textColor="@color/darkorange"
-        android:id="@+id/textView4"
-        android:layout_below="@+id/startQuiz"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="89dp" />
+
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
