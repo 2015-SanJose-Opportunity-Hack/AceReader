@@ -20,6 +20,8 @@
         android:text="@string/quizRules"
         android:textColor="@color/darkorange"
         android:id="@+id/textView3"
+        android:textSize="25sp"
+        android:textAlignment="center"
         android:layout_below="@+id/startQuiz"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="89dp" />

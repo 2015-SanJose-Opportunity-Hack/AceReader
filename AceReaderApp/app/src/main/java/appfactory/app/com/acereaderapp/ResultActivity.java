@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -13,7 +14,7 @@ public class ResultActivity extends Activity {
 
     private Button playAgain;
     private Context mcontext;
-    private int percent;
+    private double percent;
     private AnimatedCircleLoadingView animatedCircleLoadingView;
 
 
@@ -22,11 +23,18 @@ public class ResultActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
 
-        percent=getIntent().getIntExtra("FINAL_SCORE",0);
+        //percent=getIntent().getIntExtra("FINAL_SCORE",0);
 
-        percent = (percent/5)*100;
+        percent = SingletonData.getScore();
+        Log.d("Fix", "Score: " + percent);
 
+        percent = ((percent/5)*100);
+
+        Log.d("Fix","Percent: "+percent);
         mcontext=this;
+        SingletonData.setScore(0);
+        SingletonData.setCurrent_question(0);
+
         playAgain = (Button)findViewById(R.id.playAgain);
 
         animatedCircleLoadingView = (AnimatedCircleLoadingView) findViewById(R.id.circle_loading_view);
@@ -38,6 +46,8 @@ public class ResultActivity extends Activity {
             public void onClick(View view) {
                 Intent intent = new Intent(mcontext, StartQuizActivity.class);
                 mcontext.startActivity(intent);
+
+                finish();
 
             }
         });

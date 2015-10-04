@@ -54,9 +54,9 @@ public class ReaderActivity extends Activity implements Speaker.MyUtteranceProgr
 
         List<Passages> list = db.getAllPassages();
 
-        Log.d("size", list.size() + "");
-        Log.d("Passage", list.get(0).getContent());
-        //---
+//        Log.d("size", list.size() + "");
+//        Log.d("Passage", list.get(0).getContent());
+//
 
         mContext=this;
         btnPlay=(ImageButton)findViewById(R.id.button_play);
@@ -123,6 +123,7 @@ public class ReaderActivity extends Activity implements Speaker.MyUtteranceProgr
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, StartQuizActivity.class);
                 mContext.startActivity(intent);
+                finish();
 
             }
         });

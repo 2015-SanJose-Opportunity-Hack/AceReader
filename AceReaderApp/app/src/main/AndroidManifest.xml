@@ -26,7 +26,7 @@
         <activity
             android:name=".QuizFragmentActivity"
             android:screenOrientation="portrait" >
-        </activity>
+                 </activity>
         <activity
             android:name=".ReaderActivity"
             android:screenOrientation="portrait" >
@@ -34,13 +34,25 @@
         <activity
             android:name=".StartQuizActivity"
             android:screenOrientation="portrait" >
+
         </activity>
         <activity
             android:name=".ResultActivity"
+<<<<<<< HEAD
             android:screenOrientation="portrait" >
         </activity>
         <activity android:name=".ReportCardActivity"
             android:screenOrientation="portrait" >
+=======
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".Quize_reader_popup"
+            android:label="@string/title_activity_quize_reader_popup"
+            android:theme="@style/Theme.CustomTranslucent"
+            >
+
+>>>>>>> c69aa08288cda4f159f2df01704a4aaf3a3e42a3
         </activity>
     </application>
 
