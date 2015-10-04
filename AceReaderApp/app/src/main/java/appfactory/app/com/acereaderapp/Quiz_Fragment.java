@@ -37,7 +37,7 @@ public class Quiz_Fragment extends Fragment {
     private String option_a;
     private String option_b;
     private String answer;
-    private  int question_no;
+    private  int question_no=0;
     private int score=0;
 
 
@@ -108,14 +108,16 @@ public class Quiz_Fragment extends Fragment {
         button_option_one.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                disableOptions();
                 if (answer.equals("option_a")) {
                     button_option_one.setCompoundDrawablesWithIntrinsicBounds(R.drawable.tick, 0, 0, 0);
-                    ((QuizFragmentActivity)getActivity()).incrementScore();
+                   // ((QuizFragmentActivity)getActivity()).incrementScore();
+                    SingletonData.setScore(SingletonData.getScore() + 1);
 
                 } else {
                     button_option_one.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cross, 0, 0, 0);
                 }
+                disableOptions();
+
 
             }
         });
@@ -123,15 +125,18 @@ public class Quiz_Fragment extends Fragment {
         button_option_two.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                disableOptions();
                 if(answer.equals("option_b")){
-                    button_option_two.setCompoundDrawablesWithIntrinsicBounds(R.drawable.tick, 0, 0, 0);                    ((QuizFragmentActivity)getActivity()).incrementScore();
-                    ((QuizFragmentActivity)getActivity()).incrementScore();
+                    button_option_two.setCompoundDrawablesWithIntrinsicBounds(R.drawable.tick, 0, 0, 0);
+                    //((QuizFragmentActivity)getActivity()).incrementScore();
+                    //((QuizFragmentActivity)getActivity()).incrementScore();
+                    SingletonData.setScore(SingletonData.getScore()+1);
 
                 }
                 else {
                     button_option_two.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cross, 0, 0, 0);
                 }
+                disableOptions();
+
 
             }
         });

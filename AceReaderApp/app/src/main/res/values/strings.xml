@@ -20,4 +20,5 @@
     <string name="title_activity_bar_chart">BarChartActivity</string>
     <string name="title_activity_start_quiz">StartQuizActivity</string>
     <string name="quizRules">This Quiz will contain 5 questions. Press the icon above to start.</string>
+    <string name="title_activity_quize_reader_popup">Quize_reader_popup</string>
 </resources>

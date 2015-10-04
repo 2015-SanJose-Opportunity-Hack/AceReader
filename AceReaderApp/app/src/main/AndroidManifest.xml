@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="appfactory.app.com.acereaderapp" >
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/launcherico"
@@ -26,18 +27,25 @@
         <activity
             android:name=".QuizFragmentActivity"
             android:screenOrientation="portrait" >
-        </activity>
+                 </activity>
         <activity
             android:name=".ReaderActivity"
             android:screenOrientation="portrait" >
         </activity>
-
         <activity
             android:name=".StartQuizActivity"
             android:screenOrientation="portrait" >
+
         </activity>
-        <activity android:name=".ResultActivity"
+        <activity
+            android:name=".ResultActivity"
             android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".Quize_reader_popup"
+            android:label="@string/title_activity_quize_reader_popup"
+            android:theme="@style/Theme.CustomTranslucent"
+            >
 
         </activity>
     </application>
