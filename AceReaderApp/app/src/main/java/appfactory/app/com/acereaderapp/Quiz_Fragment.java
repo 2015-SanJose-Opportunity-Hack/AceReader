@@ -23,6 +23,10 @@ public class Quiz_Fragment extends Fragment {
     private TextView textview_question;
     private Button button_option_one;
     private Button button_option_two;
+    private Button button_score;
+    private Button button_question_no;
+
+
     private ImageButton button_option_next;
 
     private  OnButtonClickListener mCallback;
@@ -34,10 +38,11 @@ public class Quiz_Fragment extends Fragment {
     private String option_b;
     private String answer;
     private  int question_no;
+    private int score=0;
 
 
     // TODO: Rename and change types and number of parameters
-    public static Quiz_Fragment newInstance(Questions questions,int qustionNo) {
+    public static Quiz_Fragment newInstance(Questions questions,int qustionNo,int score) {
         Quiz_Fragment fragment = new Quiz_Fragment();
         Bundle args = new Bundle();
         args.putString(ARG_QUESTION, questions.getQuestion());
@@ -48,18 +53,19 @@ public class Quiz_Fragment extends Fragment {
         fragment.setArguments(args);
 
 
-        fragment.setQuestion(questions,qustionNo);
+        fragment.setQuestion(questions,qustionNo,score);
 
         return fragment;
     }
 
-    void setQuestion(Questions questions,int question_no){
+    void setQuestion(Questions questions,int question_no,int score){
 
         this.question = questions.getQuestion();
         this.option_a = questions.getOption_a();
         this.option_b = questions.getOption_b();
         this.answer = questions.getAnswer();
         this.question_no=question_no;
+        this.score=score;
     }
 
     public Quiz_Fragment(){
@@ -87,10 +93,16 @@ public class Quiz_Fragment extends Fragment {
         button_option_two = (Button)view.findViewById(R.id.button_option2);
         button_option_next = (ImageButton)view.findViewById(R.id.btn_next);
         textview_question = (TextView)view.findViewById(R.id.textView_question);
+        button_score = (Button)view.findViewById(R.id.button_score);
+        button_question_no = (Button)view.findViewById(R.id.button_question_no);
+
+
         textview_question.setText(question);
 
         button_option_one.setText(option_a);
         button_option_two.setText(option_b);
+        button_score.setText("Score: "+score);
+        button_question_no.setText(question_no+"/5");
 
 
         button_option_one.setOnClickListener(new View.OnClickListener() {
@@ -99,6 +111,7 @@ public class Quiz_Fragment extends Fragment {
                 disableOptions();
                 if (answer.equals("option_a")) {
                     button_option_one.setCompoundDrawablesWithIntrinsicBounds(R.drawable.tick, 0, 0, 0);
+                    ((QuizFragmentActivity)getActivity()).incrementScore();
 
                 } else {
                     button_option_one.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cross, 0, 0, 0);
@@ -112,7 +125,9 @@ public class Quiz_Fragment extends Fragment {
             public void onClick(View view) {
                 disableOptions();
                 if(answer.equals("option_b")){
-                    button_option_two.setCompoundDrawablesWithIntrinsicBounds(R.drawable.tick, 0, 0, 0);
+                    button_option_two.setCompoundDrawablesWithIntrinsicBounds(R.drawable.tick, 0, 0, 0);                    ((QuizFragmentActivity)getActivity()).incrementScore();
+                    ((QuizFragmentActivity)getActivity()).incrementScore();
+
                 }
                 else {
                     button_option_two.setCompoundDrawablesWithIntrinsicBounds(R.drawable.cross, 0, 0, 0);
