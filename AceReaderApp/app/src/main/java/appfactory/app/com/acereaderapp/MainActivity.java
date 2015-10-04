@@ -24,7 +24,7 @@ public class MainActivity extends Activity {
 
         DBWrapper db = new DBWrapper(this);
 
-        db.addPassages(new Passages(6,1,"try this again"));
+        db.addPassages(new Passages(8,1,"HaHa this is working"));
 
         List<Passages> list = db.getAllPassages();
 

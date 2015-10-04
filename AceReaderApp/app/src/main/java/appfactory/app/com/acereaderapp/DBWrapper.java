@@ -112,17 +112,18 @@ public class DBWrapper extends SQLiteOpenHelper {
                         null); // h. limit
 
         // 3. if we got results get the first one
-        if (cursor != null)
-            cursor.moveToFirst();
+        Passages passage=null;
+        if (cursor.moveToFirst()) {
 
-        // 4. build book object
-        Passages passage = new Passages();
-        passage.setPid(Integer.parseInt(cursor.getString(0)));
-        passage.setDl(Integer.parseInt(cursor.getString(1)));
-        passage.setContent(cursor.getString(2));
 
-        Log.d("getPassage(" + id + ")", passage.toString());
+            // 4. build book object
+            passage = new Passages();
+            passage.setPid(Integer.parseInt(cursor.getString(cursor.getColumnIndex(DBWrapper.KEY_PID))));
+            passage.setDl(Integer.parseInt(cursor.getString(cursor.getColumnIndex(DBWrapper.KEY_DL))));
+            passage.setContent(cursor.getString(cursor.getColumnIndex(DBWrapper.KEY_CONTENT)));
 
+            Log.d("getPassage(" + id + ")", passage.toString());
+        }
         // 5. return book
         return passage;
     }
