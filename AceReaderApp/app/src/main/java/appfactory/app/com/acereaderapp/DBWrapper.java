@@ -62,12 +62,21 @@ public class DBWrapper extends SQLiteOpenHelper {
     private static final String TABLE_PASSAGES = "passages";
     private static final String TABLE_QUESTIONS = "questions";
 
-    // Books Table Columns names
+    // Passage Table Columns names
     private static final String KEY_PID = "passage_id";
     private static final String KEY_DL = "difficulty_level";
     private static final String KEY_CONTENT = "content";
 
-    private static final String[] COLUMNS = {KEY_PID, KEY_DL, KEY_CONTENT};
+    // Question Table Columns names
+    private static final String KEY_QID = "question_id";
+    private static final String KEY_QPID = "passage_id";
+    private static final String KEY_STID = "subtopic_id";
+    private static final String KEY_QUESTION = "question";
+    private static final String KEY_OPTIONA = "option_a";
+    private static final String KEY_OPTIONB = "option_a";
+    private static final String KEY_ANSWER = "answer";
+
+    private static final String[] QCOLUMNS = {KEY_QID, KEY_QPID, KEY_STID,KEY_QUESTION,KEY_OPTIONA,KEY_OPTIONB, KEY_ANSWER};
 
     public void addPassages(Passages passages){
         Log.d("addPassages", passages.toString());
@@ -156,5 +165,54 @@ public class DBWrapper extends SQLiteOpenHelper {
         // return books
         return passages;
     }
+
+    public void deletePassage(Passages passages) {
+
+        // 1. get reference to writable DB
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // 2. delete
+        db.delete(TABLE_PASSAGES,
+                KEY_PID + " = ?",
+                new String[]{String.valueOf(passages.getPid())});
+
+        // 3. close
+        db.close();
+
+        Log.d("deleteBook", passages.toString());
+
+    }
+
+    public void addQuestions(Questions questions){
+        Log.d("addQuestions", questions.toString());
+        // 1. get reference to writable DB
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // 2. create ContentValues to add key "column"/value
+        ContentValues values = new ContentValues();
+        values.put(KEY_QID, questions.getQid());
+        values.put(KEY_PID, questions.getPid());
+        values.put(KEY_STID, questions.getStid());
+        values.put(KEY_QUESTION, questions.getQuestion());
+        values.put(KEY_OPTIONA, questions.getOption_a());
+        values.put(KEY_OPTIONB, questions.getOption_b());
+        values.put(KEY_ANSWER, questions.getAnswer());
+
+
+
+        Passages temp = getPassage(questions.getPid());
+        // 3. insert
+        if(temp==null) {
+            db.insert(TABLE_PASSAGES, // table
+                    null, //nullColumnHack
+                    values); // key/value -> keys = column names/ values = column values
+        }
+        else{
+            Log.e("exists","exists");
+        }
+        // 4. close
+        db.close();
+    }
+
 
 }

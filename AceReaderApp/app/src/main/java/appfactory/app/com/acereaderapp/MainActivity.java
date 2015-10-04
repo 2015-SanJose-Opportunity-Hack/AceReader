@@ -24,13 +24,12 @@ public class MainActivity extends Activity {
 
         DBWrapper db = new DBWrapper(this);
 
-        db.addPassages(new Passages(6,1,"try this again"));
+        db.addPassages(new Passages(9,1,SingletonData.passageDump));
 
-        List<Passages> list = db.getAllPassages();
-
-        db.getAllPassages();
-
-        Log.e("test234", list.get(0).getContent());
+//        List<Passages> list = db.getAllPassages();
+//
+//        Log.e("size",list.size()+"");
+//        Log.e("Passage", list.get(0).getContent());
 
 
         mContext=this;
