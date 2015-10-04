@@ -2,8 +2,11 @@ package appfactory.app.com.acereaderapp;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import java.util.List;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -12,6 +15,17 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        DBWrapper db = new DBWrapper(this);
+
+        db.addPassages(new Passages(6,1,"try this again"));
+
+        List<Passages> list = db.getAllPassages();
+
+        db.getAllPassages();
+
+        Log.e("test234", list.get(0).getContent());
+
     }
 
     @Override
