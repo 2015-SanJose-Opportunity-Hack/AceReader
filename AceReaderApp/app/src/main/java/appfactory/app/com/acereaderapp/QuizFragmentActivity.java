@@ -63,9 +63,7 @@ public class QuizFragmentActivity extends Activity implements Quiz_Fragment.OnBu
             intent.putExtra("FINAL_SCORE",SingletonData.getScore());
             mContext.startActivity(intent);
             Toast.makeText(getBaseContext(),"Quiz over! Thank you.",Toast.LENGTH_SHORT).show();
-//            questionNo = 0;
-//            score = 0;
-
+            finish();
         }else {
             SingletonData.setCurrent_question(SingletonData.getCurrent_question() + 1);
             // Create an instance of ExampleFragment

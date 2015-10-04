@@ -123,6 +123,7 @@ public class ReaderActivity extends Activity implements Speaker.MyUtteranceProgr
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, StartQuizActivity.class);
                 mContext.startActivity(intent);
+                finish();
 
             }
         });
