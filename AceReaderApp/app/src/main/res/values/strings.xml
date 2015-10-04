@@ -1,6 +1,8 @@
 <resources>
-    <string name="app_name">AceReaderApp</string>
+    <string name="app_name">Reading Ace</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="START">Let\'s Start</string>
+    <string name="Report_Card">Report Card</string>
 </resources>
