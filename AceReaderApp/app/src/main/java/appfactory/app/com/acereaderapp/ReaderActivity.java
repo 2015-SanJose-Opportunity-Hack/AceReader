@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -20,6 +21,7 @@ import appfactory.app.com.acereaderapp.ttpengine.Speaker;
 public class ReaderActivity extends Activity implements Speaker.MyUtteranceProgressListener
 {
     private ImageButton btnPlay,btnReplay,btnSettings;
+    private Button btnStartQuiz;
     private TextView textView_reader;
 
     private final int CHECK_CODE = 0x1;
@@ -40,6 +42,7 @@ public class ReaderActivity extends Activity implements Speaker.MyUtteranceProgr
         btnPlay=(ImageButton)findViewById(R.id.button_play);
         btnSettings=(ImageButton)findViewById(R.id.button_settings);
         textView_reader=(TextView)findViewById(R.id.textView_reader);
+        btnStartQuiz=(Button)findViewById(R.id.button_startQuiz);
 
         btnPlay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +68,14 @@ public class ReaderActivity extends Activity implements Speaker.MyUtteranceProgr
             }
         });
 
+        btnStartQuiz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, QuizActivity.class);
+                mContext.startActivity(intent);
+
+            }
+        });
         checkTTS();
     }
     private void checkTTS(){

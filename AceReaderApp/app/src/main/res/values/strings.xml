@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Reading Ace</string>
+    <string name="app_name">AceReader</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -9,4 +9,5 @@
     <string name="pause">Pause</string>
     <string name="Im_ready">I\'m ready to start</string>
     <string name="start_speaking">us.</string>
+    <string name="question1">Which word has "a" as in the word "same"?</string>
 </resources>

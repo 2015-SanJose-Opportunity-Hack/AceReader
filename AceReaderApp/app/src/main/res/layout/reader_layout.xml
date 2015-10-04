@@ -56,7 +56,8 @@
             android:layout_weight="1"
             android:layout_alignBottom="@+id/textView_reader"
             android:layout_alignStart="@+id/textView_reader"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:id="@+id/button_startQuiz"/>
     </RelativeLayout>
 
 
