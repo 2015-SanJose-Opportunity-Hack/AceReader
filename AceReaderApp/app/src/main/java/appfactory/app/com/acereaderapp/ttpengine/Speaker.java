@@ -68,9 +68,10 @@ public class Speaker extends UtteranceProgressListener implements OnInitListener
                     String.valueOf(AudioManager.STREAM_ALARM));
            // tts.speak(text, TextToSpeech.QUEUE_FLUSH, myHashAlarm);
             myHashAlarm.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID,
-                    ""+text);
+                    "" + text);
 // myHashAlarm now contains two optional parameters
             tts.speak(text, TextToSpeech.QUEUE_ADD, myHashAlarm);
+
 
 //
 //            if (android.os.Build.VERSION.SDK_INT >= 21) {
@@ -81,13 +82,45 @@ public class Speaker extends UtteranceProgressListener implements OnInitListener
         }
     }
 
-    public void pause(int duration){
-        tts.playSilence(duration, TextToSpeech.QUEUE_ADD, null);
+    public void pause(){
+        if(ready && allowed) {
+            HashMap<String, String> hash = new HashMap<String,String>();
+            hash.put(TextToSpeech.Engine.KEY_PARAM_STREAM,
+                    String.valueOf(AudioManager.STREAM_NOTIFICATION));
+            tts.setOnUtteranceProgressListener(this);
+            HashMap<String, String> myHashAlarm = new HashMap();
+
+            myHashAlarm.put(TextToSpeech.Engine.KEY_PARAM_STREAM,
+                    String.valueOf(AudioManager.STREAM_ALARM));
+            myHashAlarm.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID,
+                    "last_id");
+            tts.speak("", TextToSpeech.QUEUE_FLUSH, myHashAlarm);
+
+        }
+    }
+    public void done() {
+        if(ready && allowed) {
+            HashMap<String, String> hash = new HashMap<String,String>();
+            hash.put(TextToSpeech.Engine.KEY_PARAM_STREAM,
+                    String.valueOf(AudioManager.STREAM_NOTIFICATION));
+            tts.setOnUtteranceProgressListener(this);
+            HashMap<String, String> myHashAlarm = new HashMap();
+
+            myHashAlarm.put(TextToSpeech.Engine.KEY_PARAM_STREAM,
+                    String.valueOf(AudioManager.STREAM_ALARM));
+            myHashAlarm.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID,
+                    "last_id");
+            tts.speak("", TextToSpeech.QUEUE_ADD, myHashAlarm);
+
+        }
     }
 
     // Free up resources
     public void destroy(){
         tts.shutdown();
+    }
+    public boolean isSpeaking(){
+     return  tts.isSpeaking();
     }
 
 
@@ -121,6 +154,8 @@ public class Speaker extends UtteranceProgressListener implements OnInitListener
     public void onError(String s) {
 
     }
+
+
 
 
     public interface MyUtteranceProgressListener{

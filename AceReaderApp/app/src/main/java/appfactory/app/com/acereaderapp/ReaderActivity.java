@@ -33,7 +33,7 @@ public class ReaderActivity extends Activity implements Speaker.MyUtteranceProgr
 
     private Speaker speaker;
 
-    private String text="Hey are you having fun. We are here for hacking.";
+    private String text="I apologize for disturbing you again. Keep going guys.";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,19 +43,47 @@ public class ReaderActivity extends Activity implements Speaker.MyUtteranceProgr
         mContext=this;
         btnPlay=(ImageButton)findViewById(R.id.button_play);
         btnSettings=(ImageButton)findViewById(R.id.button_settings);
+        btnReplay=(ImageButton)findViewById(R.id.button_replay);
         textView_reader=(TextView)findViewById(R.id.textView_reader);
 
         btnPlay.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
+                text = text.replaceAll("<font color=#cc0029>", "");
+                text = text.replaceAll("</font>", "");
+
+                if (!speaker.isSpeaking()) {
+                    speaker.allow(true);
+                    Pattern re = Pattern.compile("[^.!?\\s][^.!?]*(?:[.!?](?!['\"]?\\s|$)[^.!?]*)*[.!?]?['\"]?(?=\\s|$)", Pattern.MULTILINE | Pattern.COMMENTS);
+                    Matcher reMatcher = re.matcher(text);
+                    while (reMatcher.find()) {
+                        speaker.speak(reMatcher.group());
+                    }
+                    speaker.done();
+                }else {
+                    speaker.pause();
+                }
+            }
+        });
+        btnReplay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                text = text.replaceAll("<font color=#cc0029>", "");
+                text = text.replaceAll("</font>", "");
+
+                if (speaker.isSpeaking()) {
+                    speaker.pause();
+                }
                 speaker.allow(true);
                 Pattern re = Pattern.compile("[^.!?\\s][^.!?]*(?:[.!?](?!['\"]?\\s|$)[^.!?]*)*[.!?]?['\"]?(?=\\s|$)", Pattern.MULTILINE | Pattern.COMMENTS);
                 Matcher reMatcher = re.matcher(text);
                 while (reMatcher.find()) {
                     speaker.speak(reMatcher.group());
                 }
-            }
-        });
+                speaker.done();
+        }
+    });
 
         btnSettings.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +111,7 @@ public class ReaderActivity extends Activity implements Speaker.MyUtteranceProgr
             if(resultCode == TextToSpeech.Engine.CHECK_VOICE_DATA_PASS){
                 speaker = new Speaker(this);
                 speaker.setInterface(this);
+
             }else {
                 Intent install = new Intent();
                 install.setAction(TextToSpeech.Engine.ACTION_INSTALL_TTS_DATA);
@@ -124,17 +153,18 @@ public class ReaderActivity extends Activity implements Speaker.MyUtteranceProgr
 
     @Override
     public void onTTSDone(String s) {
-        btnPlay.setImageResource(R.drawable.play);
+        if(s.equals("last_id"))
+            btnPlay.setImageResource(R.drawable.play);
         Log.d("TTS", "Stop");
         text=text.replaceAll("<font color=#cc0029>","");
         text=text.replaceAll("</font>","");
-
 
     }
 
     @Override
     public void onTTSStart(String s) {
         btnPlay.setImageResource(R.drawable.pause);
+        btnPlay.setTag(R.drawable.pause);
 
 
         text=text.replace(s, "<font color=#cc0029>" + s + "</font>");
