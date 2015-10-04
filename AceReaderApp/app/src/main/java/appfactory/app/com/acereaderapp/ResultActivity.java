@@ -16,6 +16,7 @@ public class ResultActivity extends Activity {
     private Context mcontext;
     private double percent;
     private AnimatedCircleLoadingView animatedCircleLoadingView;
+    private Button home;
 
 
     @Override
@@ -36,6 +37,7 @@ public class ResultActivity extends Activity {
         SingletonData.setCurrent_question(0);
 
         playAgain = (Button)findViewById(R.id.playAgain);
+        home = (Button)findViewById(R.id.Home);
 
         animatedCircleLoadingView = (AnimatedCircleLoadingView) findViewById(R.id.circle_loading_view);
         startLoading();
@@ -45,6 +47,17 @@ public class ResultActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mcontext, StartQuizActivity.class);
+                mcontext.startActivity(intent);
+
+                finish();
+
+            }
+        });
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mcontext, MainActivity.class);
                 mcontext.startActivity(intent);
 
                 finish();
