@@ -27,8 +27,6 @@ public class MainActivity extends Activity {
         DBWrapper db = new DBWrapper(this);
         db.getReadableDatabase();
 
-        Log.e("size#####","43434343");
-
         db.getReadableDatabase();
         //add Passage
         db.addPassages(new Passages(9, 1, SingletonData.passageDump));

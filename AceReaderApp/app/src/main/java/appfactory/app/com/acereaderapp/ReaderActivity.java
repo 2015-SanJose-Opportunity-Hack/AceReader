@@ -13,7 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
+import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -36,6 +36,7 @@ public class ReaderActivity extends Activity implements Speaker.MyUtteranceProgr
     private Speaker speaker;
 
     private String text="Amazing! I apologize for disturbing you again. Keep going guys.";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,6 +111,16 @@ public class ReaderActivity extends Activity implements Speaker.MyUtteranceProgr
             }
         });
         checkTTS();
+
+        //calculate
+        int noOfQuiz = 3;
+        HashMap<Integer,Integer> temp = new HashMap<>();
+        temp.put(1, 5);
+        temp.put(2, 3);
+        temp.put(3, 4);
+        QuizData quizData = new QuizData(noOfQuiz,temp);
+        Integer test = SingletonData.updateLevel(quizData);
+        Log.d("New Level",test+"");
 
     }
     private void checkTTS(){
