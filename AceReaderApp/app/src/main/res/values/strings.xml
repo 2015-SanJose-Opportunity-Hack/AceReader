@@ -10,4 +10,7 @@
     <string name="Im_ready">I\'m ready to start</string>
     <string name="start_speaking">us.</string>
     <string name="question1">Which word has "a" as in the word "same"?</string>
+    <string name="score">Score:</string>
+    <string name="attemp">1/5</string>
+    <string name="Submit">SUBMIT</string>
 </resources>

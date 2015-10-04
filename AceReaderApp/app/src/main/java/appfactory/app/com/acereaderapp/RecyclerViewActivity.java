@@ -6,6 +6,7 @@ package appfactory.app.com.acereaderapp;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -55,6 +56,11 @@ public class RecyclerViewActivity extends Activity {
             @Override
             public void onItemClick(View v, int position) {
 
+                if(position==0){
+                    Intent intent = new Intent(mContext, ReaderActivity.class);
+                    mContext.startActivity(intent);
+
+                }
             }
         };
         adapter.setOnItemClickListener(onItemClickListener);
