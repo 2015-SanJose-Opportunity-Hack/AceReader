@@ -3,6 +3,8 @@ package appfactory.app.com.acereaderapp;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -19,6 +21,7 @@ public class QuizFragmentActivity extends Activity implements Quiz_Fragment.OnBu
 
     private  static int questionNo = 0;
     private  static int score = 0;
+    private Context mContext;
 
 
     @Override
@@ -26,7 +29,7 @@ public class QuizFragmentActivity extends Activity implements Quiz_Fragment.OnBu
         super.onCreate(savedInstanceState);
         setContentView(R.layout.quiz_fragment_activity);
 
-
+        mContext=this;
        db = new DBWrapper(this);
         questions = db.getAllQuestions();
          if(getFragmentManager().findFragmentByTag("quiz_frag"+questionNo)==null) {
@@ -55,7 +58,8 @@ public class QuizFragmentActivity extends Activity implements Quiz_Fragment.OnBu
     public void onButtonClickListener(View view) {
         questionNo++;
         if(questionNo>=5){
-
+            Intent intent = new Intent(mContext, ResultActivity.class);
+            mContext.startActivity(intent);
             Toast.makeText(getBaseContext(),"Quiz over! Thank you.",Toast.LENGTH_SHORT).show();
         }else {
             // Create an instance of ExampleFragment

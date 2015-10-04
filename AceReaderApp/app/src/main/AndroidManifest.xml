@@ -33,6 +33,9 @@
             android:name=".StartQuizActivity"
             android:screenOrientation="portrait" >
         </activity>
+        <activity android:name=".ResultActivity"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>
