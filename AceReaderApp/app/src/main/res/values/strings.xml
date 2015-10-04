@@ -23,4 +23,5 @@
     <string name="title_activity_quize_reader_popup">Quize_reader_popup</string>
     <string name="home">Home</string>
     <string name="yourscore">Your Score Is</string>
+    <string name="welcome">Welcome Rani!</string>
 </resources>

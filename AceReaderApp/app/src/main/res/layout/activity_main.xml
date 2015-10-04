@@ -14,9 +14,8 @@
         android:id="@+id/textView"
         android:textSize="50sp"
         android:textColor="@color/red"
-        android:layout_above="@+id/button_start"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="87dp" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
 
     <Button
@@ -59,10 +58,30 @@
         android:layout_height="wrap_content"
         android:id="@+id/imageView"
         android:src="@drawable/launcherico"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/button_start"
         android:layout_alignEnd="@+id/button_start"
-        android:layout_above="@+id/textView" />
+        android:layout_above="@+id/textView"
+        android:layout_below="@+id/button_reportcard" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/welcome"
+        android:id="@+id/textView6"
+        android:textSize="35dp"
+        android:textColor="@color/material_blue_grey_800"
+        android:layout_below="@+id/imageView3"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:id="@+id/imageView3"
+        android:src="@drawable/rani"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>
